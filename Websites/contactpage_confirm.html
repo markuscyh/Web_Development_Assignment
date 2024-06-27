@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us Confirmation | Fishee E-Commerce</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+
+<body>
+    <header id="header" style="min-width: 550px;">
+        <div class="common_header">
+            <a href="homepage.html"><img src="../Images/Fishee.png" height="65" alt="Fishee logo"></a>
+        </div>     
+        <div class="common_header">
+            <ul>
+                <li><a class="header_words" href="contactpage.html"><h3>Contact Us</h3></a></li>
+            </ul>
+        </div>      
+        <div class="common_header">
+            <form>
+                <input style="width: 400px;" type="search" id="searchbar" name="searchbar" placeholder="Search in Fishee">
+            </form>
+        </div>
+        <div class="common_header">
+            <ul>
+                <li><a class="header_words" href="login.html">Log In</a></li>
+                <li>/</li>
+                <li><a class="header_words" href="signup.html">Sign Up</a></li>
+            </ul>
+        </div>
+        <a href="shoppingcart.html"><div class="shopping_header"></div></a>
+    </header>
+
+    <article>
+    <div style="margin-top: 115px;" id="login_signin" >
+        <h2 style="margin-bottom: 1px;">Thank you for taking the time to contact us</h2>
+        <hr>
+        <p style="text-align: justify;">We will reply to your question within 3 working days. <br><br> Thank you for your patience</p>
+        <a href="homepage.html"><button class="button">Back</button></a>
+    </div>
+    </article>
+    
+    <footer id="footer" style="min-width: 557px;">
+        <p><small><i>Copyright &copy; 2023 Chan Yung Hann, Bachelors in Software Engineering, Sunway University</i></small></p>
+        <p><small><i>Page created on 10/30/2023 12:13:33</i></small></p>
+        <p><small><i>Page last updated on </i><i id="update"></i></small></p>
+
+        <script>
+            let text = document.lastModified;
+            document.getElementById("update").innerHTML = text;
+        </script>
+    </footer>
+</body>
+</html>

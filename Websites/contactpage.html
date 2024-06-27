@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Fishee E-Commerce</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+
+<body>
+    <header id="header">
+        <div class="common_header">
+            <a href="homepage.html"><img src="../Images/Fishee.png" height="65" alt="Fishee logo"></a>
+        </div>      
+        <div class="invis_header">
+            <ul>
+                <li><h3>Contact Us</h3></li>
+            </ul>
+        </div>      
+        <div class="common_header">
+            <form>
+                <input style="width: 400px;" type="search" id="searchbar" name="searchbar" placeholder="Search in Fishee">
+            </form>
+        </div>
+        <div class="common_header">
+            <ul>
+                <li><a class="header_words" href="login.html">Log In</a></li>
+                <li>/</li>
+                <li><a class="header_words" href="signup.html">Sign Up</a></li>
+            </ul>
+        </div>
+        <a href="shoppingcart.html"><div class="shopping_header"></div></a>
+    </header>
+
+    <article>
+    <div id="contact_us">
+        <h2>Contact Us</h2>
+        Please fill out the form below with your details and question so that we may respond to you. <br><br>
+        <form name="contact_us_form" onsubmit="return validateForm()" action="contactpage_confirm.html">
+            <label for="contact_email">Email</label><br>
+            <input class="input" type="email" name="contact_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.{a-z}{2}$" required><br>
+            <small>example@example.com</small><br><br>
+            <label for="contact_tel">Telephone Number</label><br>
+            <input class="input" type="tel" name="contact_tel" required><br><br>
+            <label for="contact_name">Full Name</label><br>
+            <input class="input" type="text" name="contact_name" required><br><br>
+            <label for="contact_question">Enter your question </label><br>
+            <textarea name="contact_question" id="autoresizing" required></textarea> <br>
+            <small>Your question should have at least 30 characters in it.</small><br><br>
+            <input class="button" type="submit" value="Submit">
+        </form>
+        
+        <script>
+            function forbiddenPhone(str) {
+                const phonespecialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/;
+                return phonespecialChars.test(str);
+            }
+
+            function forbiddenName(str) {
+                const namespecialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
+                return namespecialChars.test(str);
+            }
+
+            function validateForm() {
+                let validate_email = document.forms["contact_us_form"]["contact_email"].value;
+                let validate_phone = document.forms["contact_us_form"]["contact_tel"].value;
+                let validate_name = document.forms["contact_us_form"]["contact_name"].value;
+                let validate_question = document.forms["contact_us_form"]["contact_question"].value;
+
+                if (validate_email.includes("@gmail.com") != true){
+                    if (validate_email.includes("@outlook.com") != true) {
+                        if (validate_email.includes("@yahoo.com") != true) {
+                            alert("You have entered an invalid email address");
+                            return false
+                        }
+                    }
+                }
+
+                if(forbiddenPhone(validate_phone)){
+                    alert("You have entered an invalid phone number");
+                    return false;
+                }
+
+                if(validate_phone.length < 10 || validate_phone.length > 10) {
+                    alert("You have entered an invalid phone number. The length of the phone number must be 10 digits long.");
+                    return false;
+                }
+
+                if(forbiddenName(validate_name)){
+                    alert("Please enter a proper name with no symbols or numbers");
+                    return false;
+                }
+
+                if(validate_question.length < 30) {
+                    alert("Your question is too short.");
+                    return false;
+                }
+
+                confirm("Are you sure you want to submit this question?");
+            }
+
+            textarea = document.querySelector("#autoresizing");
+            textarea.addEventListener('input', autoResize, false);
+     
+            function autoResize() {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';}
+        </script>
+    </div>
+    </article>
+    
+    <footer id="footer">
+        <p><small><i>Copyright &copy; 2023 Chan Yung Hann, Bachelors in Software Engineering, Sunway University</i></small></p>
+        <p><small><i>Page created on 10/30/2023 12:13:33</i></small></p>
+        <p><small><i>Page last updated on </i><i id="update"></i></small></p>
+
+        <script>
+            let text = document.lastModified;
+            document.getElementById("update").innerHTML = text;
+        </script>
+    </footer>
+</body>
+</html>

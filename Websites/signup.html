@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Fishee E-Commerce</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+
+<body>
+    <header id="header" style="min-width: 550px;">
+        <div class="common_header">
+            <a href="homepage.html"><img src="../Images/Fishee.png" height="65" alt="Fishee logo"></a>
+        </div>      
+        <div class="common_header">
+            <ul>
+                <li><a class="header_words" href="contactpage.html"><h3>Contact Us</h3></a></li>
+            </ul>
+        </div>      
+        <div class="common_header">
+            <form>
+                <input style="width: 400px;" type="search" id="searchbar" name="searchbar" placeholder="Search in Fishee">
+            </form>
+        </div>
+        <div class="invis_header">
+            <ul>
+                <li><a class="header_words" href="login.html">Log In</a></li>
+                <li>/</li>
+                <li><a class="header_words" href="signup.html">Sign Up</a></li>
+            </ul>
+        </div>
+        <a href="shoppingcart.html"><div class="shopping_header"></div></a>
+    </header>
+
+    <br>
+
+    <article>
+    <div id="login_signin">
+        <h2>Create your Fishee Account.</h2>
+        <form name="signup_form" onsubmit="return validateForm()" action="homepage.html">
+            <label for="username">Full name</label> <br>
+            <input class="input" type="text" name="username" required> <br><br>
+            <label for="signup_email">Email</label> <br>
+            <input class="input" type="email" name="signup_email" required> <br>
+            <small>example@example.com</small><br><br>
+            <label for="signup_tel">Phone Number</label><br>
+            <input class="input" type="tel" name="signup_tel" required><br><br>
+            <label for="gender">Gender</label> <br>
+            <select class="input" name="gender" style="min-width: 75px; width: 75px;" required>
+                <option value="Male" label="Male"></option>
+                <option value="Female" label="Female"></option>
+            </select><br><br>
+            <label for="signup_password">Password</label> <br>
+            <input class="input" type="password" name="signup_password" required> <br>
+            <small>Minimum 8 characters with at least a number, lowercase letter, uppercase letter and symbol</small><br><br>
+            <label for="reenter_password">Re-enter password</label> <br>
+            <input class="input" type="password" name="reenter_password" required> <br><br>
+            <input class="button" type="submit" value="Sign Up"> <br>
+            <hr>
+            By signing up, you agree to Fishee's Terms of Service and Privacy Policy <br><br>
+            Already have an account? <a href="login.html">Log in</a> here.
+        </form>
+
+        <script>
+            function forbiddenName(str) {
+                const namespecialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
+                return namespecialChars.test(str);
+            }
+
+            function forbiddenPhone(str) {
+                const phonespecialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/;
+                return phonespecialChars.test(str);
+            }
+
+            function checklowerletterPassword(str) {
+                const lowerletterPassword = /[qwertyuiopasdfghjklzxcvbnm]/;
+                return lowerletterPassword.test(str);
+            }
+
+            function checkupperletterPassword(str) {
+                const upperletterPassword = /[QWERTYUIOPASDFGHJKLZXCVBNM]/;
+                return upperletterPassword.test(str);
+            }
+
+            function checknumberPassword(str) {
+                const numberPassword = /[1234567890]/;
+                return numberPassword.test(str);
+            }
+
+            function checksymbolPassword(str) {
+                const symbolPassword = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+                return symbolPassword.test(str);
+            }
+
+            function validateForm() {
+                let validate_name = document.forms["signup_form"]["username"].value;
+                let validate_email = document.forms["signup_form"]["signup_email"].value;
+                let validate_phone = document.forms["signup_form"]["signup_tel"].value;
+                let validate_password = document.forms["signup_form"]["signup_password"].value;
+                let validate_reenter = document.forms["signup_form"]["reenter_password"].value;
+
+                if(forbiddenName(validate_name)){
+                    alert("Please enter a proper name with no symbols or numbers");
+                    return false;
+                }
+
+                if (validate_email.includes("@gmail.com") != true){
+                    if (validate_email.includes("@outlook.com") != true) {
+                        if (validate_email.includes("@yahoo.com") != true) {
+                            alert("You have entered an invalid email address");
+                            return false
+                        }
+                    }
+                }
+
+                if(validate_phone.length < 10 || validate_phone.length > 10) {
+                    alert("You have entered an invalid phone number. The length of the phone number must be 10 digits long.");
+                    return false;
+                }
+
+                if(forbiddenPhone(validate_phone)){
+                    alert("You have entered an invalid phone number. Please remove any letters or symbols");
+                    return false;
+                }
+
+                if(validate_password.length < 8) {
+                    alert("The length of your password must be at least 8 characters long");
+                    return false;
+                }
+                else if(checklowerletterPassword(validate_password) == false) {
+                    alert("Please use a lowercase letter in your password");
+                    return false;
+                }
+                else if (checkupperletterPassword(validate_password) == false) {
+                    alert("Please use an uppercase letter in your password");
+                    return false;
+                }
+                else if (checknumberPassword(validate_password) == false) {
+                    alert("Please use a number in your password");
+                    return false;
+                }
+                else if(checksymbolPassword(validate_password) == false) {
+                    alert("Please use a symbol in your password");
+                    return false;
+                }
+
+                if (validate_reenter != validate_password) {
+                    alert("Please reenter your password.")
+                    return false;
+                }
+                
+                if (confirm("Do you want to sign up for this account?") == false) {
+                    return false;
+                }
+
+                alert("You have signed up for a Fishee account")
+            }
+        </script>
+    </div>
+
+    </article>
+
+    <footer id="footer" style="min-width: 557px;">
+        <p><small><i>Copyright &copy; 2023 Chan Yung Hann, Bachelors in Software Engineering, Sunway University</i></small></p>
+        <p><small><i>Page created on 10/30/2023 12:13:47</i></small></p>
+        <p><small><i>Page last updated on </i><i id="update"></i></small></p>
+
+        <script>
+            let text = document.lastModified;
+            document.getElementById("update").innerHTML = text;
+        </script>
+    </footer>
+</body>
+</html>
